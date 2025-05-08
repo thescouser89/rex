@@ -227,6 +227,7 @@ public class RemoteEntityClient {
 
     private Object parseBody(HttpResponse<Buffer> response) {
         String body = response.bodyAsString();
+        System.out.println(">>>>> dustin debug: response: " + body);
         Object objectResponse = null;
         if (body != null) {
             try {
