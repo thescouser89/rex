@@ -32,6 +32,7 @@ import io.vertx.mutiny.ext.web.client.HttpRequest;
 import io.vertx.mutiny.ext.web.client.HttpResponse;
 import io.vertx.mutiny.ext.web.client.WebClient;
 import jakarta.enterprise.context.control.ActivateRequestContext;
+import jakarta.ws.rs.core.HttpHeaders;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.pnc.quarkus.client.auth.runtime.PNCClientAuth;
 import org.jboss.pnc.rex.common.enums.Method;
@@ -267,9 +268,7 @@ public class GenericVertxHttpClient {
         try {
             if (context.phase() == ClientPhase.PREPARE_REQUEST) {
                 io.vertx.ext.web.client.HttpRequest<?> request = context.request();
-
-                TokenCredentials token = new TokenCredentials(pncClientAuth.getHttpAuthorizationHeaderValue());
-                request.authentication(token);
+                request.putHeader(HttpHeaders.AUTHORIZATION, pncClientAuth.getHttpAuthorizationHeaderValue());
             }
         } finally {
             // go to next interceptor
