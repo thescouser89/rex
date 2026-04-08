@@ -40,6 +40,11 @@ public class PNCClientAlternative {
     private static class PNCClientAuthAlt implements PNCClientAuth {
 
         @Override
+        public ClientAuthType getConfiguredType() {
+            return ClientAuthType.OIDC;
+        }
+
+        @Override
         public String getAuthToken() {
             return "1234";
         }
