@@ -8,9 +8,17 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
+      exclude:
+      - 'org.jboss.*'
+      - 'org.commonjava.*'
+
 
   - package-ecosystem: "github-actions" # Also update Github actions
     directory: "/"
     schedule:
       # Check for updates to GitHub Actions every week
       interval: "weekly"
+    cooldown:
+      default-days: 7
